@@ -22,6 +22,6 @@ st.image(join(BASE_DIR, "images", "matrix_code.png"))
 st.markdown(
     """
     My inspiration for these comes from my experience training AI models to do math and my interests in 
-    ML/data science and music.  All the code for these projects is on [my GitHub](https://github.com/rehresman).
+    machine learning, data science and music.  All the code for these projects is on [my GitHub](https://github.com/rehresman).
 """
 )

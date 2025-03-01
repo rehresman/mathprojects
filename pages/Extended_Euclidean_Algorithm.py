@@ -90,7 +90,7 @@ else:
                     m[n-2][1], '(',
                     m[n-2][2],') + ',
                     m[n-2][3], ', so it follows that')
-        st.write( gcd, " = ", m[n-2][0], " - ",m[n-2][1], "(", m[n-2][2], ')')
+        st.write( m[n-2][3], " = ", m[n-2][0], " - ",m[n-2][1], "(", m[n-2][2], ')')
 
         # build arrays of coefficients of equivalent linear combinations of the gcd
         g, h = [None] * (n-1), [None] * (n-1)
@@ -102,12 +102,22 @@ else:
         for i in range(n-2, 0, -1):
             g[i-1] = -h[i]
             h[i-1] = -(m[i-1][1]*h[i] + g[i])
-            st.write( gcd, " = (", g[i-1], ")", m[i-1][0], " - (", h[i-1], ")", m[i-1][2])
+            st.write( m[n-2][3], " = (", g[i-1], ")", m[i-1][0], " - (", h[i-1], ")", m[i-1][2])
+        
+        # flip the signs if necessary
+        if (m[n-2][3] < 0):
+            for i in range(n-1):
+                g[i] = -g[i]
+                h[i] = -h[i]
+
 
         # sanity check
         rand_int = random.randint(-1000000000,1000000000)
         rand_gcd_multiple = rand_int * gcd
-        st.write("Since we could express ", gcd, " as a linear combination of ", X, " and ", Y, ", we can express any multiple of",
-                 gcd, " in the following form by multiplying the coefficients by whatever integer we want to express. For example:")
-        st.write(rand_gcd_multiple, " = (", g[0]*rand_int, ")", m[0][0], " - (", h[0]*rand_int, ")", m[0][2])
+        st.write("Since we could express ", m[n-2][3], " as a linear combination of ", X, " and ", Y, ", we can express any multiple of",
+                 m[n-2][3], " in the following form by multiplying the coefficients by whatever integer we want to express. For example:")
+        if (m[n-2][3] > 0):
+            st.write(rand_gcd_multiple, " = (", g[0]*rand_int, ")", m[0][0], " - (", h[0]*rand_int, ")", m[0][2])
+        else:
+            st.write(rand_gcd_multiple, " = (", -g[0]*rand_int, ")", m[0][0], " - (", -h[0]*rand_int, ")", m[0][2])
         st.write("(calculator spot check: ", g[0]*rand_int * m[0][0] - rand_int*h[0]*m[0][2] == rand_gcd_multiple, ")")
