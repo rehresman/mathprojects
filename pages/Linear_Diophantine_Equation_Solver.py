@@ -101,8 +101,8 @@ else:
         correct_result = np.all(correct_result_arr == True)
     
             
-        st.write("sanity check: ", correct_result)
-        st.write(correct_result_dict)
+        #st.write("sanity check: ", correct_result)
+        #st.write(correct_result_dict)
         # table of solutions
         st.markdown("""### Table of Solutions (Positive When Possible)""")
         df = pd.DataFrame(solutions, columns=["X","Y"])
